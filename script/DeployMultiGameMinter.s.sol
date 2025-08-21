@@ -10,6 +10,17 @@ contract DeployMultiGameMinter is Script {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         require(deployerPrivateKey != 0, "PRIVATE_KEY not set in .env");
 
+        // Start broadcasting transactions signed with the loaded private key
+        vm.startBroadcast(deployerPrivateKey);
+
+        // Deploy the contract
+        MultiGameMinter minter = new MultiGameMinter();
+
+        // Stop broadcasting
+        vm.stopBroadcast();
+
+        console.log("✅ MultiGameMinter Deployed at:", address(minter));
         
+        return minter;
     }
 }
