@@ -5,5 +5,7 @@ import {Script} from "forge-std/Script.sol";
 import {MultiGameMinter} from "../src/MultiGameMinter.sol";
 
 contract DeployMultiGameMinter is Script {
-   
+    function run() external returns (MultiGameMinter) {
+       
+    }
 }
