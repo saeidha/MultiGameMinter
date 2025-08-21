@@ -16,9 +16,9 @@ contract MultiGameMinter {
     // The address of the contract owner, set during deployment.
     address public owner;
 
-    // The conversion rate for the deterministic minting function: 1 token per 0.001 ETH.
+    // The conversion rate for the deterministic minting function: 1 token per 0.0000000001 ETH.
     // This is a constant and visible to everyone.
-    uint256 public constant TOKEN_RATE = 0.001 ether;
+    uint256 public constant TOKEN_RATE = 0.0000000001 ether;
 
     /**
      * @dev The constructor sets the contract deployer as the owner.
@@ -35,7 +35,7 @@ contract MultiGameMinter {
      */
     function mintTokens() public payable {
         // Require the sent ETH to be at least enough for one token.
-        require(msg.value >= TOKEN_RATE, "You must send at least 0.001 ETH.");
+        require(msg.value >= TOKEN_RATE, "You must send at least 0.0000000001 ETH.");
 
         // Calculate the amount of tokens to mint based on the sent ETH and the fixed rate.
         // Integer division in Solidity discards the remainder.
@@ -62,7 +62,7 @@ contract MultiGameMinter {
      * @dev Game 2: A small bet for a random amount between 10 and 19.
      */
     function playShiftedGamble() public payable {
-        require(msg.value >= 0.001 ether, "Minimum bet is 0.001 ETH.");
+        require(msg.value >= 0.0000000001 ether, "Minimum bet is 0.0000000001 ETH.");
         uint256 pseudoRandom = _generateRandom(2);
         balances[msg.sender] += (pseudoRandom % 10) + 10; // 10-19 tokens
     }
@@ -84,7 +84,7 @@ contract MultiGameMinter {
      * @dev Game 4: Even or odd. Win 25 tokens on even, 5 on odd.
      */
     function playEvenOrOdd() public payable {
-        require(msg.value >= 0.001 ether, "Minimum bet is 0.001 ETH.");
+        require(msg.value >= 0.0000000001 ether, "Minimum bet is 0.0000000001 ETH.");
         uint256 pseudoRandom = _generateRandom(4);
         if (pseudoRandom % 2 == 0) { // Even
             balances[msg.sender] += 25;
@@ -117,10 +117,10 @@ contract MultiGameMinter {
     }
     
     /**
-     * @dev Game 7: Multiplier. Get 1 to 5 times your bet in tokens (based on a 0.001 ETH rate).
+     * @dev Game 7: Multiplier. Get 1 to 5 times your bet in tokens (based on a 0.0000000001 ETH rate).
      */
     function playMultiplier() public payable {
-        require(msg.value >= TOKEN_RATE, "Minimum bet is 0.001 ETH.");
+        require(msg.value >= TOKEN_RATE, "Minimum bet is 0.0000000001 ETH.");
         uint256 baseAmount = msg.value / TOKEN_RATE;
         uint256 pseudoRandom = _generateRandom(7);
         uint256 multiplier = (pseudoRandom % 5) + 1; // 1x to 5x
@@ -131,7 +131,7 @@ contract MultiGameMinter {
      * @dev Game 8: Get a random power of 2, from 2^0 to 2^7.
      */
     function playPowerOfTwo() public payable {
-        require(msg.value >= 0.001 ether, "Minimum bet is 0.001 ETH.");
+        require(msg.value >= 0.0000000001 ether, "Minimum bet is 0.0000000001 ETH.");
         uint256 pseudoRandom = _generateRandom(8);
         uint256 exponent = pseudoRandom % 8; // 0 to 7
         balances[msg.sender] += (2 ** exponent); // 1, 2, 4, 8, 16, 32, 64, 128
@@ -153,7 +153,7 @@ contract MultiGameMinter {
      * @dev Game 10: Low volatility. Always win between 5 and 10 tokens.
      */
     function playSafeBet() public payable {
-        require(msg.value >= 0.001 ether, "Minimum bet is 0.001 ETH.");
+        require(msg.value >= 0.0000000001 ether, "Minimum bet is 0.0000000001 ETH.");
         uint256 pseudoRandom = _generateRandom(10);
         balances[msg.sender] += (pseudoRandom % 6) + 5; // 5-10 tokens
     }
