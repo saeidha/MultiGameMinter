@@ -19,7 +19,7 @@ contract DeployMultiGameMinter is Script {
         // Stop broadcasting
         vm.stopBroadcast();
 
-        console.log("✅ MultiGameMinter Deployed at:", address(minter));
+        // console.log("MultiGameMinter Deployed at:", address(minter));
         
         return minter;
     }
