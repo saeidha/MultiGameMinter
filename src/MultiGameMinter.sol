@@ -57,3 +57,12 @@ contract MultiGameMinter {
         uint256 pseudoRandom = _generateRandom(1);
         balances[msg.sender] += pseudoRandom % 10; // 0-9 tokens
     }
+
+    /**
+     * @dev Game 2: A small bet for a random amount between 10 and 19.
+     */
+    function playShiftedGamble() public payable {
+        require(msg.value >= 0.001 ether, "Minimum bet is 0.001 ETH.");
+        uint256 pseudoRandom = _generateRandom(2);
+        balances[msg.sender] += (pseudoRandom % 10) + 10; // 10-19 tokens
+    }
