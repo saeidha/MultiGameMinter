@@ -1,9 +1,3 @@
-Of course. Here is a complete `README.md` file for the `MultiGameMinter` smart contract. This file explains the contract's purpose, features, functions, and important security considerations.
-
-You can save this text into a file named `README.md` in your project's root directory.
-
----
-
 # MultiGameMinter Smart Contract
 
 A simple and gas-efficient Solidity smart contract that allows users to acquire a non-transferable token either at a fixed, predictable rate or by playing one of ten different pseudo-random games.
