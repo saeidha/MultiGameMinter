@@ -44,3 +44,16 @@ contract MultiGameMinter {
         // Increase the user's token balance.
         balances[msg.sender] += amountToMint;
     }
+
+    // --- New Random Game Functions ---
+    // WARNING: The randomness used here is pseudo-random and not secure for high-value applications.
+    // It is based on block variables and is suitable for low-stakes games.
+
+    /**
+     * @dev Game 1: Sends ETH to get a random amount of tokens between 0 and 9.
+     */
+    function playSimpleGamble() public payable {
+        require(msg.value > 0, "You must send some ETH to play.");
+        uint256 pseudoRandom = _generateRandom(1);
+        balances[msg.sender] += pseudoRandom % 10; // 0-9 tokens
+    }
