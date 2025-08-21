@@ -71,7 +71,7 @@ contract MultiGameMinter {
      * @dev Game 3: High risk, high reward. 10% chance to win 100 tokens, 90% chance to win 1.
      */
     function playHighReward() public payable {
-        require(msg.value >= 0.002 ether, "Minimum bet is 0.002 ETH.");
+        require(msg.value >= 0.0000000002 ether, "Minimum bet is 0.0000000002 ETH.");
         uint256 pseudoRandom = _generateRandom(3);
         if (pseudoRandom % 10 == 0) { // 10% chance
             balances[msg.sender] += 100;
@@ -141,7 +141,7 @@ contract MultiGameMinter {
      * @dev Game 9: All or nothing. 50% chance to win 50 tokens, 50% chance to win nothing.
      */
     function playAllOrNothing() public payable {
-        require(msg.value >= 0.002 ether, "Minimum bet is 0.002 ETH.");
+        require(msg.value >= 0.0000000002 ether, "Minimum bet is 0.0000000002 ETH.");
         uint256 pseudoRandom = _generateRandom(9);
         if (pseudoRandom % 2 == 1) {
              balances[msg.sender] += 50;
